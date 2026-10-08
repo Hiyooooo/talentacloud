@@ -1,0 +1,259 @@
+@import "tailwindcss";
+
+:root {
+  /* Surface (dark slate) */
+  --bg-0: #070A12;          /* kanvas halaman */
+  --bg-1: #0B1020;          /* section alternatif */
+  --surface-1: #0F1629;     /* kartu bento dasar */
+  --surface-2: #141C33;     /* kartu terangkat / hover */
+  --surface-3: #1A2340;     /* elemen di dalam kartu */
+
+  /* Border (hairline) */
+  --border-1: rgba(148, 163, 184, 0.10);
+  --border-2: rgba(148, 163, 184, 0.18);
+  --border-accent: rgba(56, 189, 248, 0.45);
+
+  /* Teks */
+  --text-1: #F1F5F9;        /* judul */
+  --text-2: #A8B3C7;        /* body */
+  --text-3: #8898B3;        /* meta, label (WCAG AA compliant contrast) */
+
+  /* Aksen */
+  --blue: #2563EB;          /* electric blue (primer, WCAG AA compliant on white) */
+  --blue-strong: #1D4ED8;
+  --cyan: #22D3EE;          /* cyan glow (sekunder) */
+  --cyan-soft: rgba(34, 211, 238, 0.14);
+  --blue-soft: rgba(59, 130, 246, 0.14);
+
+  /* Status */
+  --success: #34D399;
+  --warning: #FBBF24;
+  --danger: #F87171;
+
+  /* Glow */
+  --glow-blue: 0 0 0 1px rgba(59,130,246,.35), 0 0 32px -6px rgba(59,130,246,.45);
+  --glow-cyan: 0 0 28px -8px rgba(34,211,238,.5);
+}
+
+@theme inline {
+  --color-bg-0: var(--bg-0);
+  --color-bg-1: var(--bg-1);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+
+  --color-border-1: var(--border-1);
+  --color-border-2: var(--border-2);
+  --color-border-accent: var(--border-accent);
+  --color-line-1: var(--border-1);
+  --color-line-2: var(--border-2);
+
+  --color-text-1: var(--text-1);
+  --color-text-2: var(--text-2);
+  --color-text-3: var(--text-3);
+
+  --color-blue: var(--blue);
+  --color-blue-strong: var(--blue-strong);
+  --color-cyan: var(--cyan);
+  --color-cyan-soft: var(--cyan-soft);
+  --color-blue-soft: var(--blue-soft);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-0);
+  color: var(--text-2);
+  font-feature-settings: "cv11", "ss01";
+}
+
+body {
+  background-color: var(--bg-0);
+  color: var(--text-2);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bento Card Styles with cursor spotlight */
+.bento-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(20, 28, 51, 0.72), rgba(15, 22, 41, 0.72));
+  border: 1px solid var(--border-1);
+  border-radius: 20px;
+  backdrop-filter: blur(12px) saturate(120%);
+  overflow: hidden;
+  transition: border-color 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  .bento-card {
+    background: #0F1629;
+  }
+}
+
+.bento-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%),
+              rgba(56, 189, 248, 0.10), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.bento-card:hover {
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+}
+
+.bento-card:hover::before {
+  opacity: 1;
+}
+
+.bento-card:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background: var(--blue);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  z-index: 100;
+  font-size: 14px;
+  font-weight: 500;
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-to-content:focus {
+  top: 20px;
+}
+
+/* =========================================================================
+   Page Load Entrance Animations (Linear/Raycast Modern Bento Style)
+   ========================================================================= */
+@keyframes pageLoadBar {
+  0% {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+  70% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 0;
+  }
+}
+
+@keyframes navbarSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroMockupIn {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-page-load-bar {
+  animation: pageLoadBar 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.animate-navbar-in {
+  animation: navbarSlideDown 600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.animate-hero-eyebrow {
+  animation: heroFadeInUp 600ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms both;
+}
+
+.animate-hero-title {
+  animation: heroFadeInUp 650ms cubic-bezier(0.2, 0.8, 0.2, 1) 220ms both;
+}
+
+.animate-hero-subtitle {
+  animation: heroFadeInUp 650ms cubic-bezier(0.2, 0.8, 0.2, 1) 340ms both;
+}
+
+.animate-hero-cta {
+  animation: heroFadeInUp 650ms cubic-bezier(0.2, 0.8, 0.2, 1) 460ms both;
+}
+
+.animate-hero-meta {
+  animation: heroFadeInUp 650ms cubic-bezier(0.2, 0.8, 0.2, 1) 560ms both;
+}
+
+.animate-hero-mockup {
+  animation: heroMockupIn 750ms cubic-bezier(0.2, 0.8, 0.2, 1) 680ms both;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .bento-card:hover {
+    transform: none !important;
+  }
+  .animate-page-load-bar,
+  .animate-navbar-in,
+  .animate-hero-eyebrow,
+  .animate-hero-title,
+  .animate-hero-subtitle,
+  .animate-hero-cta,
+  .animate-hero-meta,
+  .animate-hero-mockup {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

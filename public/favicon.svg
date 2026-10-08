@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#070A12"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7.5" stroke="rgba(148, 163, 184, 0.2)"/>
+  <!-- Minimalist Cloud Shape -->
+  <path d="M10 20C8.34315 20 7 18.6569 7 17C7 15.4853 8.12549 14.2335 9.5855 14.0325C9.89704 11.7582 11.8488 10 14.25 10C16.1437 10 17.7594 11.0886 18.5298 12.6749C18.9959 12.4497 19.5197 12.3243 20.0714 12.3243C21.8465 12.3243 23.3082 13.6335 23.5358 15.3404C24.3853 15.8242 25 16.8291 25 18C25 19.6569 23.6569 21 22 21L10 21C9.44772 21 10 20 10 20Z" fill="#1E293B" stroke="#3B82F6" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Cyan Spark Accent -->
+  <circle cx="21" cy="11" r="2.5" fill="#22D3EE"/>
+  <circle cx="21" cy="11" r="4.5" stroke="#22D3EE" stroke-opacity="0.3" stroke-width="1"/>
+</svg>
