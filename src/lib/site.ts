@@ -1,6 +1,6 @@
 export const site = {
   name: "TalentaCloud",
-  url: "https://talentacloud.id", // PLACEHOLDER: ganti dengan domain asli
+  url: "http://talentacloud.vercel.app/", // PLACEHOLDER: ganti dengan domain asli
   title: "TalentaCloud - Platform HRIS Modern untuk Startup & Tim Digital",
   description:
     "Kelola absensi GPS, payroll otomatis, ujian online, library SOP, dan perizinan dalam satu dashboard bento modern.",
