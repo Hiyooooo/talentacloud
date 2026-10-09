@@ -6,21 +6,6 @@ import { HeroMockup } from "@/components/bento/HeroMockup";
 export function Hero() {
   return (
     <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
-      {/* Background Subtle Radial Glow & Hairline Grid */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[rgba(59,130,246,0.18)] to-transparent rounded-full blur-3xl pointer-events-none -z-10"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none -z-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-        aria-hidden="true"
-      />
-
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Eyebrow Pill */}
         <div className="animate-hero-eyebrow inline-flex items-center gap-2 mb-6">

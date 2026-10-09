@@ -33,7 +33,7 @@ export function Pricing() {
               <BentoCard
                 className={`flex flex-col justify-between h-full p-6 sm:p-7 relative ${
                   isGrowth
-                    ? "border-[var(--border-accent)] bg-gradient-to-b from-[rgba(20,28,51,0.95)] to-[rgba(15,22,41,0.95)] ring-1 ring-[var(--border-accent)]"
+                    ? "border-[var(--border-accent)] bg-[var(--surface-2)] ring-1 ring-[var(--border-accent)]"
                     : ""
                 }`}
               >

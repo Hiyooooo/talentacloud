@@ -166,7 +166,7 @@ export function LibraryCard() {
                     </div>
                     <div className="w-full h-1 rounded-full bg-[var(--surface-1)] overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-[var(--blue)] to-[var(--cyan)] rounded-full"
+                        className="h-full bg-[var(--cyan)] rounded-full"
                         style={{ width: `${item.progress}%` }}
                       />
                     </div>

@@ -20,19 +20,6 @@ export default function Image() {
           overflow: "hidden",
         }}
       >
-        {/* Glow effect */}
-        <div
-          style={{
-            position: "absolute",
-            top: "-150px",
-            right: "-100px",
-            width: "600px",
-            height: "600px",
-            background: "radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(34,211,238,0.05) 50%, transparent 70%)",
-            borderRadius: "50%",
-          }}
-        />
-
         {/* Top Header / Branding */}
         <div
           style={{

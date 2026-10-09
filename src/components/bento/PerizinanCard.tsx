@@ -190,7 +190,7 @@ export function PerizinanCard() {
                 </div>
                 <div className="w-full h-1.5 rounded-full bg-[var(--surface-1)] overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[var(--blue)] to-[var(--cyan)] transition-all duration-500 rounded-full"
+                    className="h-full bg-[var(--cyan)] transition-all duration-500 rounded-full"
                     style={{ width: `${(dewiLeaveBalance / 12) * 100}%` }}
                   />
                 </div>

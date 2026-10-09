@@ -44,7 +44,7 @@ export function Navbar() {
         className="fixed top-0 left-0 right-0 h-[2px] z-[100] pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
-        <div className="h-full bg-gradient-to-r from-transparent via-[var(--cyan)] to-[var(--blue)] animate-page-load-bar" />
+        <div className="h-full bg-[var(--cyan)] animate-page-load-bar" />
       </div>
 
       <header

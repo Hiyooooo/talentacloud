@@ -86,10 +86,10 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Bento Card Styles with cursor spotlight */
+/* Bento Card Styles */
 .bento-card {
   position: relative;
-  background: linear-gradient(180deg, rgba(20, 28, 51, 0.72), rgba(15, 22, 41, 0.72));
+  background: var(--surface-1);
   border: 1px solid var(--border-1);
   border-radius: 20px;
   backdrop-filter: blur(12px) saturate(120%);
@@ -106,24 +106,10 @@ body {
   }
 }
 
-.bento-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%),
-              rgba(56, 189, 248, 0.10), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
 .bento-card:hover {
+  background: var(--surface-2);
   border-color: var(--border-2);
   transform: translateY(-2px);
-}
-
-.bento-card:hover::before {
-  opacity: 1;
 }
 
 .bento-card:focus-visible {

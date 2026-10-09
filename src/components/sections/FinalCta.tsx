@@ -7,7 +7,7 @@ export function FinalCta() {
   return (
     <section id="final-cta" className="py-20 md:py-28 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
       <Reveal>
-        <div className="relative rounded-[24px] overflow-hidden p-8 sm:p-12 md:p-16 border border-[var(--border-accent)] bg-gradient-to-b from-[var(--surface-2)] to-[var(--surface-1)] text-center shadow-[var(--glow-cyan)]">
+        <div className="relative rounded-[24px] overflow-hidden p-8 sm:p-12 md:p-16 border border-[var(--border-accent)] bg-[var(--surface-1)] text-center shadow-[var(--glow-cyan)]">
           {/* Subtle Glow backdrop */}
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-[rgba(34,211,238,0.12)] rounded-full blur-3xl pointer-events-none -z-10"

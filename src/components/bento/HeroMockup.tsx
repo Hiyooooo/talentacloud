@@ -56,12 +56,6 @@ export function HeroMockup() {
 
   return (
     <div className="relative mx-auto w-full max-w-6xl xl:max-w-7xl group [perspective:1000px]">
-      {/* Radial Glow behind mockup */}
-      <div
-        className="absolute -inset-4 bg-gradient-to-r from-[rgba(59,130,246,0.18)] to-[rgba(34,211,238,0.14)] rounded-[28px] blur-2xl opacity-60 pointer-events-none -z-10"
-        aria-hidden="true"
-      />
-
       {/* Main Window */}
       <div
         className="w-full bg-[var(--surface-1)]/90 backdrop-blur-xl border border-[var(--border-2)] rounded-[20px] shadow-2xl overflow-hidden transition-transform duration-500 md:[transform:rotateX(4deg)] md:group-hover:[transform:rotateX(0deg)]"

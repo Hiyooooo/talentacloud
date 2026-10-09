@@ -150,16 +150,6 @@ export function AbsensiCard() {
 
             {/* GPS Geofencing Interactive Map */}
             <div className="relative h-48 sm:h-52 rounded-[14px] bg-[var(--bg-1)] border border-[var(--border-1)] overflow-hidden flex items-center justify-center">
-              {/* Map Abstract Grid Lines */}
-              <div
-                className="absolute inset-0 opacity-15"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to right, rgba(148,163,184,0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(148,163,184,0.3) 1px, transparent 1px)",
-                  backgroundSize: "28px 28px",
-                }}
-              />
-
               {/* Road vectors simulation */}
               <svg
                 className="absolute inset-0 w-full h-full opacity-20 pointer-events-none"
@@ -239,7 +229,7 @@ export function AbsensiCard() {
               {/* Progress bar */}
               <div className="w-full h-1.5 rounded-full bg-[var(--surface-1)] overflow-hidden mb-4">
                 <div
-                  className="h-full bg-gradient-to-r from-[var(--blue)] to-[var(--cyan)] transition-all duration-500 rounded-full"
+                  className="h-full bg-[var(--cyan)] transition-all duration-500 rounded-full"
                   style={{ width: `${(presentCount / totalEmployees) * 100}%` }}
                 />
               </div>
