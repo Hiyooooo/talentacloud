@@ -3,7 +3,15 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function FinalCta() {
+interface FinalCtaProps {
+  whatsappUrl?: string;
+}
+
+export function FinalCta({ whatsappUrl }: FinalCtaProps = {}) {
+  const demoTarget =
+    whatsappUrl ||
+    "mailto:halo@talentacloud.id?subject=Permintaan%20Demo%20TalentaCloud";
+
   return (
     <section id="final-cta" className="py-20 md:py-28 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
       <Reveal>
@@ -36,7 +44,9 @@ export function FinalCta() {
                 </Button>
               </a>
               <a
-                href="mailto:halo@talentacloud.id?subject=Permintaan%20Demo%20TalentaCloud"
+                href={demoTarget}
+                target={whatsappUrl ? "_blank" : undefined}
+                rel={whatsappUrl ? "noopener noreferrer" : undefined}
                 className="w-full sm:w-auto"
               >
                 <Button size="lg" variant="secondary" className="w-full sm:w-auto">

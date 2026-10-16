@@ -1,14 +1,20 @@
 import React from "react";
 import { site } from "@/lib/site";
 
-export function WhatsAppButton() {
+interface WhatsAppButtonProps {
+  whatsappUrl?: string;
+}
+
+export function WhatsAppButton({ whatsappUrl }: WhatsAppButtonProps = {}) {
+  const targetUrl = whatsappUrl || site.whatsapp;
+
   return (
     <aside
       aria-label="Kontak WhatsApp"
       className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40"
     >
       <a
-        href={site.whatsapp}
+        href={targetUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Hubungi tim TalentaCloud via WhatsApp (Buka di tab baru)"

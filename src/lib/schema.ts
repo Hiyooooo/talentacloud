@@ -1,25 +1,31 @@
 import { site } from "./site";
 import { faqList } from "./data";
+import type { SiteConfig } from "./api";
 
-export function generateJsonLd() {
+export function generateJsonLd(config?: SiteConfig) {
+  const siteName = config?.site?.name || site.name;
+  const siteEmail = config?.contact.email || site.email;
+  const siteDesc = config?.seo.meta_description || site.description;
+  const siteLogo = config?.branding.logo_url || `${site.url}/logo.svg`;
+
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
         "@id": `${site.url}/#organization`,
-        name: site.name,
+        name: siteName,
         url: site.url,
-        logo: `${site.url}/favicon.svg`,
-        email: site.email,
-        description: site.description,
+        logo: siteLogo,
+        email: siteEmail,
+        description: siteDesc,
       },
       {
         "@type": "WebSite",
         "@id": `${site.url}/#website`,
         url: site.url,
-        name: site.name,
-        description: site.description,
+        name: siteName,
+        description: siteDesc,
         inLanguage: "id-ID",
         publisher: {
           "@id": `${site.url}/#organization`,
@@ -28,10 +34,10 @@ export function generateJsonLd() {
       {
         "@type": "SoftwareApplication",
         "@id": `${site.url}/#software`,
-        name: site.name,
+        name: siteName,
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
-        description: site.description,
+        description: siteDesc,
         author: {
           "@id": `${site.url}/#organization`,
         },

@@ -1,4 +1,5 @@
 import { generateJsonLd } from "@/lib/schema";
+import { getSiteConfig } from "@/lib/api";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
@@ -12,8 +13,9 @@ import { Pricing } from "@/components/sections/Pricing";
 import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 
-export default function Home() {
-  const jsonLd = generateJsonLd();
+export default async function Home() {
+  const siteConfig = await getSiteConfig();
+  const jsonLd = generateJsonLd(siteConfig);
 
   return (
     <>
@@ -24,11 +26,18 @@ export default function Home() {
       />
 
       {/* 1. Navbar */}
-      <Navbar />
+      <Navbar
+        branding={siteConfig.branding}
+        siteName={siteConfig.site.name}
+        whatsappUrl={siteConfig.cta.whatsapp_url}
+      />
 
       <main id="konten-utama">
         {/* 2. Hero + Mockup Bento */}
-        <Hero />
+        <Hero
+          hero={siteConfig.hero}
+          whatsappUrl={siteConfig.cta.whatsapp_url}
+        />
 
         {/* 3. Trust Strip */}
         <TrustStrip />
@@ -52,14 +61,20 @@ export default function Home() {
         <Faq />
 
         {/* 10. CTA Penutup */}
-        <FinalCta />
+        <FinalCta whatsappUrl={siteConfig.cta.whatsapp_url} />
       </main>
 
       {/* 11. Footer */}
-      <Footer />
+      <Footer
+        branding={siteConfig.branding}
+        contact={siteConfig.contact}
+        footerText={siteConfig.footer_text}
+        siteName={siteConfig.site.name}
+        whatsappUrl={siteConfig.cta.whatsapp_url}
+      />
 
       {/* 12. Floating WhatsApp Button (Pojok Kanan Bawah) */}
-      <WhatsAppButton />
+      <WhatsAppButton whatsappUrl={siteConfig.cta.whatsapp_url} />
     </>
   );
 }

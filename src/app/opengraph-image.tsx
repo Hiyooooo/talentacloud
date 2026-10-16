@@ -1,10 +1,50 @@
 import { ImageResponse } from "next/og";
+import { getSiteConfig } from "@/lib/api";
 
-export const alt = "Dashboard bento TalentaCloud: absensi, gaji, dan jadwal ujian";
+export const alt =
+  "TalentaCloud - Platform HRIS Modern untuk Startup & Tim Digital";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function Image() {
+export default async function Image() {
+  const config = await getSiteConfig();
+
+  // 1. Jika ada banner yang diunggah dari Admin Panel:
+  // Ambil gambar dari URL banner tersebut dan langsung sajikan file gambarnya sebagai respons.
+  if (config.seo.og_image_url && config.seo.og_image_url.trim() !== "") {
+    try {
+      const response = await fetch(config.seo.og_image_url);
+      if (response.ok) {
+        const imageContentType =
+          response.headers.get("content-type") || "image/png";
+        const buffer = await response.arrayBuffer();
+        return new Response(buffer, {
+          headers: {
+            "Content-Type": imageContentType,
+            "Cache-Control": "public, max-age=31536000, immutable",
+          },
+        });
+      }
+    } catch (error) {
+      console.warn(
+        `[OG Image] Gagal mengambil gambar dari ${config.seo.og_image_url}. Beralih ke kartu visual bawaan.`,
+        error
+      );
+    }
+  }
+
+  // 2. Jika belum ada banner yang diunggah (mode bawaan):
+  // Gunakan desain kartu visual bawaan yang sudah ada, dengan teks judul dan deskripsi dinamis dari API.
+  const title =
+    config.hero.headline ||
+    config.seo.meta_title ||
+    "Semua Urusan HR, dalam Satu Dashboard.";
+  const description =
+    config.hero.subheadline ||
+    config.seo.meta_description ||
+    "Absensi GPS, payroll otomatis, ujian online, library SOP, dan perizinan dalam arsitektur bento modern.";
+  const siteName = config.site.name || "TalentaCloud";
+
   return new ImageResponse(
     (
       <div
@@ -60,7 +100,7 @@ export default function Image() {
                 letterSpacing: "-0.02em",
               }}
             >
-              TalentaCloud
+              {siteName}
             </div>
           </div>
           <div
@@ -79,7 +119,13 @@ export default function Image() {
         </div>
 
         {/* Headline & Description */}
-        <div style={{ display: "flex", flexDirection: "column", marginBottom: "50px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "50px",
+          }}
+        >
           <div
             style={{
               fontSize: "48px",
@@ -90,7 +136,7 @@ export default function Image() {
               letterSpacing: "-0.03em",
             }}
           >
-            Semua Urusan HR, dalam Satu Dashboard.
+            {title}
           </div>
           <div
             style={{
@@ -100,7 +146,7 @@ export default function Image() {
               maxWidth: "880px",
             }}
           >
-            Absensi GPS, payroll otomatis, ujian online, library SOP, dan perizinan dalam arsitektur bento modern.
+            {description}
           </div>
         </div>
 
@@ -124,13 +170,28 @@ export default function Image() {
               flexDirection: "column",
             }}
           >
-            <div style={{ fontSize: "14px", color: "#6B7791", marginBottom: "8px" }}>
+            <div
+              style={{
+                fontSize: "14px",
+                color: "#6B7791",
+                marginBottom: "8px",
+              }}
+            >
               Presensi Aktif
             </div>
-            <div style={{ fontSize: "18px", fontWeight: 700, color: "#F1F5F9" }}>
+            <div
+              style={{ fontSize: "18px", fontWeight: 700, color: "#F1F5F9" }}
+            >
               Rani Putri
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "8px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                marginTop: "8px",
+              }}
+            >
               <div
                 style={{
                   padding: "3px 8px",
@@ -158,13 +219,23 @@ export default function Image() {
               flexDirection: "column",
             }}
           >
-            <div style={{ fontSize: "14px", color: "#6B7791", marginBottom: "8px" }}>
+            <div
+              style={{
+                fontSize: "14px",
+                color: "#6B7791",
+                marginBottom: "8px",
+              }}
+            >
               Total Gaji Terbayar
             </div>
-            <div style={{ fontSize: "22px", fontWeight: 800, color: "#22D3EE" }}>
+            <div
+              style={{ fontSize: "22px", fontWeight: 800, color: "#22D3EE" }}
+            >
               Rp 482.750.000
             </div>
-            <div style={{ fontSize: "13px", color: "#34D399", marginTop: "6px" }}>
+            <div
+              style={{ fontSize: "13px", color: "#34D399", marginTop: "6px" }}
+            >
               +4,2% vs bulan lalu
             </div>
           </div>
@@ -181,13 +252,23 @@ export default function Image() {
               flexDirection: "column",
             }}
           >
-            <div style={{ fontSize: "14px", color: "#6B7791", marginBottom: "8px" }}>
+            <div
+              style={{
+                fontSize: "14px",
+                color: "#6B7791",
+                marginBottom: "8px",
+              }}
+            >
               Jadwal Ujian Online
             </div>
-            <div style={{ fontSize: "18px", fontWeight: 700, color: "#F1F5F9" }}>
+            <div
+              style={{ fontSize: "18px", fontWeight: 700, color: "#F1F5F9" }}
+            >
               Ujian Onboarding
             </div>
-            <div style={{ fontSize: "13px", color: "#A8B3C7", marginTop: "6px" }}>
+            <div
+              style={{ fontSize: "13px", color: "#A8B3C7", marginTop: "6px" }}
+            >
               Kamis, 8 Okt · 10:00 WIB
             </div>
           </div>
